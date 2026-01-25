@@ -38,11 +38,11 @@ export default function FleetViewSection({ data }: { data: HawkProData }) {
   return (
     <section className="space-y-4">
       <div>
-        <h2 className="text-xl font-bold flex items-center gap-2">
-          <span className="text-2xl">🌐</span>
+        <h2 className="text-lg md:text-xl font-bold flex items-center gap-2">
+          <span className="text-xl md:text-2xl">🌐</span>
           Multi-Device & Fleet View
         </h2>
-        <p className="text-sm text-slate-600 dark:text-slate-400">Scale operations and monitor entire device deployments</p>
+        <p className="text-xs md:text-sm text-slate-600 dark:text-slate-400">Scale operations and monitor entire device deployments</p>
       </div>
 
       {/* Fleet Summary Cards */}
@@ -109,8 +109,8 @@ export default function FleetViewSection({ data }: { data: HawkProData }) {
           <button
             onClick={() => setViewMode('table')}
             className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${viewMode === 'table'
-                ? 'bg-indigo-600 text-white'
-                : 'bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-700'
+              ? 'bg-indigo-600 text-white'
+              : 'bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-700'
               }`}
           >
             📊 Table View
@@ -118,8 +118,8 @@ export default function FleetViewSection({ data }: { data: HawkProData }) {
           <button
             onClick={() => setViewMode('map')}
             className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${viewMode === 'map'
-                ? 'bg-indigo-600 text-white'
-                : 'bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-700'
+              ? 'bg-indigo-600 text-white'
+              : 'bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-700'
               }`}
           >
             🗺️ Map View
@@ -180,7 +180,7 @@ export default function FleetViewSection({ data }: { data: HawkProData }) {
                         <div className="flex-1 h-2 bg-slate-100 dark:bg-slate-700 rounded-full overflow-hidden w-16">
                           <div
                             className={`h-full rounded-full ${device.battery > 70 ? 'bg-emerald-500' :
-                                device.battery > 30 ? 'bg-amber-500' : 'bg-red-500'
+                              device.battery > 30 ? 'bg-amber-500' : 'bg-red-500'
                               }`}
                             style={{ width: `${device.battery}%` }}
                           ></div>
@@ -194,8 +194,8 @@ export default function FleetViewSection({ data }: { data: HawkProData }) {
                           <div
                             key={bar}
                             className={`w-1 rounded-full ${bar <= getSignalBars(device.signal)
-                                ? 'bg-emerald-500'
-                                : 'bg-slate-200 dark:bg-slate-700'
+                              ? 'bg-emerald-500'
+                              : 'bg-slate-200 dark:bg-slate-700'
                               }`}
                             style={{ height: `${bar * 3}px` }}
                           ></div>
@@ -257,8 +257,8 @@ export default function FleetViewSection({ data }: { data: HawkProData }) {
               <div
                 key={device.id}
                 className={`aspect-square rounded-lg relative group cursor-pointer transition-transform hover:scale-110 ${healthScore > 75 ? 'bg-emerald-500' :
-                    healthScore > 50 ? 'bg-amber-500' :
-                      healthScore > 25 ? 'bg-orange-500' : 'bg-red-500'
+                  healthScore > 50 ? 'bg-amber-500' :
+                    healthScore > 25 ? 'bg-orange-500' : 'bg-red-500'
                   }`}
                 title={`${device.name}: ${healthScore.toFixed(0)}%`}
               >

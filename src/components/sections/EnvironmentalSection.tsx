@@ -155,11 +155,11 @@ export default function EnvironmentalSection({ data }: { data: HawkProData }) {
     <section className="space-y-4">
       <div className="flex items-center justify-between">
         <div>
-          <h2 className="text-xl font-bold flex items-center gap-2">
-            <span className="text-2xl">🌡️</span>
+          <h2 className="text-lg md:text-xl font-bold flex items-center gap-2">
+            <span className="text-xl md:text-2xl">🌡️</span>
             Environmental Monitoring
           </h2>
-          <p className="text-sm text-slate-600 dark:text-slate-400">Core sensor intelligence for environmental compliance</p>
+          <p className="text-xs md:text-sm text-slate-600 dark:text-slate-400">Core sensor intelligence for environmental compliance</p>
         </div>
 
         {/* Live Indicator */}

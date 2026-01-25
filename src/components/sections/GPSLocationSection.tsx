@@ -15,11 +15,11 @@ export default function GPSLocationSection({ data }: { data: HawkProData }) {
   return (
     <section className="space-y-4">
       <div>
-        <h2 className="text-xl font-bold flex items-center gap-2">
-          <span className="text-2xl">📍</span>
+        <h2 className="text-lg md:text-xl font-bold flex items-center gap-2">
+          <span className="text-xl md:text-2xl">📍</span>
           GPS, Location & Asset Tracking
         </h2>
-        <p className="text-sm text-slate-600 dark:text-slate-400">Asset visibility, security, and movement analytics</p>
+        <p className="text-xs md:text-sm text-slate-600 dark:text-slate-400">Asset visibility, security, and movement analytics</p>
       </div>
 
       {/* Current Status Cards */}
@@ -37,8 +37,8 @@ export default function GPSLocationSection({ data }: { data: HawkProData }) {
         </div>
 
         <div className={`rounded-xl bg-gradient-to-br p-4 text-white shadow-lg ${gps.geofenceStatus === 'Inside'
-            ? 'from-green-500 to-emerald-600'
-            : 'from-red-500 to-orange-600'
+          ? 'from-green-500 to-emerald-600'
+          : 'from-red-500 to-orange-600'
           }`}>
           <div className="text-sm opacity-90">Geofence</div>
           <div className="mt-1 text-2xl font-bold">{gps.geofenceStatus}</div>
@@ -120,8 +120,8 @@ export default function GPSLocationSection({ data }: { data: HawkProData }) {
 
           {/* Geofence Indicator */}
           <div className={`rounded-2xl p-5 shadow-lg ${gps.geofenceStatus === 'Inside'
-              ? 'bg-gradient-to-br from-emerald-500 to-green-600'
-              : 'bg-gradient-to-br from-red-500 to-orange-600'
+            ? 'bg-gradient-to-br from-emerald-500 to-green-600'
+            : 'bg-gradient-to-br from-red-500 to-orange-600'
             } text-white`}>
             <div className="text-sm opacity-90">Geofence Status</div>
             <div className="mt-2 flex items-center justify-between">
@@ -168,8 +168,8 @@ export default function GPSLocationSection({ data }: { data: HawkProData }) {
                       <div className="flex-1 h-2 bg-slate-100 dark:bg-slate-700 rounded-full overflow-hidden">
                         <div
                           className={`h-full rounded-full ${point.speed > 40 ? 'bg-red-500' :
-                              point.speed > 20 ? 'bg-amber-500' :
-                                'bg-emerald-500'
+                            point.speed > 20 ? 'bg-amber-500' :
+                              'bg-emerald-500'
                             }`}
                           style={{ width: `${Math.min(100, (point.speed / 60) * 100)}%` }}
                         ></div>
@@ -179,8 +179,8 @@ export default function GPSLocationSection({ data }: { data: HawkProData }) {
                   </td>
                   <td className="py-2 pr-4">
                     <span className={`inline-flex px-2 py-0.5 rounded-full text-xs ${point.speed > 5
-                        ? 'bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-200'
-                        : 'bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400'
+                      ? 'bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-200'
+                      : 'bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400'
                       }`}>
                       {point.speed > 5 ? 'Moving' : 'Stopped'}
                     </span>

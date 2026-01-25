@@ -49,11 +49,11 @@ export default function AlertsSection({ data }: { data: HawkProData }) {
   return (
     <section className="space-y-4">
       <div>
-        <h2 className="text-xl font-bold flex items-center gap-2">
-          <span className="text-2xl">🚨</span>
+        <h2 className="text-lg md:text-xl font-bold flex items-center gap-2">
+          <span className="text-xl md:text-2xl">🚨</span>
           Alerts & Notifications Center
         </h2>
-        <p className="text-sm text-slate-600 dark:text-slate-400">Incident management and response coordination</p>
+        <p className="text-xs md:text-sm text-slate-600 dark:text-slate-400">Incident management and response coordination</p>
       </div>
 
       {/* Alert Summary Cards */}

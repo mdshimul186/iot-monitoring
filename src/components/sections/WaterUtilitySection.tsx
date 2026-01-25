@@ -63,11 +63,11 @@ export default function WaterUtilitySection({ data }: { data: HawkProData }) {
     <section className="space-y-4">
       <div className="flex items-center justify-between">
         <div>
-          <h2 className="text-xl font-bold flex items-center gap-2">
-            <span className="text-2xl">💧</span>
+          <h2 className="text-lg md:text-xl font-bold flex items-center gap-2">
+            <span className="text-xl md:text-2xl">💧</span>
             Water & Utility Monitoring
           </h2>
-          <p className="text-sm text-slate-600 dark:text-slate-400">Resource usage & safety monitoring for utilities</p>
+          <p className="text-xs md:text-sm text-slate-600 dark:text-slate-400">Resource usage & safety monitoring for utilities</p>
         </div>
 
         {/* Live Indicator */}
@@ -222,8 +222,8 @@ export default function WaterUtilitySection({ data }: { data: HawkProData }) {
               <div className="h-2 bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden">
                 <div
                   className={`h-full rounded-full transition-all duration-500 ${waterUtility.tds < 150 ? 'bg-emerald-500' :
-                      waterUtility.tds < 250 ? 'bg-blue-500' :
-                        'bg-amber-500'
+                    waterUtility.tds < 250 ? 'bg-blue-500' :
+                      'bg-amber-500'
                     }`}
                   style={{ width: `${Math.min(100, (waterUtility.tds / 300) * 100)}%` }}
                 ></div>
@@ -236,8 +236,8 @@ export default function WaterUtilitySection({ data }: { data: HawkProData }) {
               <div className="h-2 bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden">
                 <div
                   className={`h-full rounded-full transition-all duration-500 ${waterUtility.turbidity < 5 ? 'bg-emerald-500' :
-                      waterUtility.turbidity < 10 ? 'bg-amber-500' :
-                        'bg-red-500'
+                    waterUtility.turbidity < 10 ? 'bg-amber-500' :
+                      'bg-red-500'
                     }`}
                   style={{ width: `${Math.min(100, (waterUtility.turbidity / 20) * 100)}%` }}
                 ></div>

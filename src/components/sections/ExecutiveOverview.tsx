@@ -30,8 +30,8 @@ export default function ExecutiveOverview({ data }: { data: HawkProData }) {
         <section className="space-y-4">
             <div className="flex items-center justify-between">
                 <div>
-                    <h1 className="text-2xl font-bold">Hawk Pro — IoT Dashboard</h1>
-                    <p className="text-sm text-slate-600 dark:text-slate-400">Executive Overview • Instant Situational Awareness</p>
+                    <h1 className="text-xl md:text-2xl font-bold">Hawk Pro — IoT Dashboard</h1>
+                    <p className="text-xs md:text-sm text-slate-600 dark:text-slate-400">Executive Overview • Instant Situational Awareness</p>
                 </div>
                 <div className="flex items-center gap-3">
                     <div className={`h-3 w-3 rounded-full ${executive.deviceStatus === 'online' ? 'bg-green-500 animate-pulse' : 'bg-red-500'}`}></div>

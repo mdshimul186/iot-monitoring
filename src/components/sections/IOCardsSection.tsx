@@ -10,11 +10,11 @@ export default function IOCardsSection({ data }: { data: HawkProData }) {
   return (
     <section className="space-y-4">
       <div>
-        <h2 className="text-xl font-bold flex items-center gap-2">
-          <span className="text-2xl">🔌</span>
+        <h2 className="text-lg md:text-xl font-bold flex items-center gap-2">
+          <span className="text-xl md:text-2xl">🔌</span>
           I/O Card & Sensor Details
         </h2>
-        <p className="text-sm text-slate-600 dark:text-slate-400">Deep technical visibility into modular sensor interfaces</p>
+        <p className="text-xs md:text-sm text-slate-600 dark:text-slate-400">Deep technical visibility into modular sensor interfaces</p>
       </div>
 
       {/* I/O Cards Grid */}
@@ -66,8 +66,8 @@ export default function IOCardsSection({ data }: { data: HawkProData }) {
                         </div>
                       </div>
                       <div className={`px-3 py-1 rounded-full text-xs font-medium ${input.health === 'OK' ? 'bg-emerald-100 dark:bg-emerald-900/30 text-emerald-800 dark:text-emerald-200' :
-                          input.health === 'WARN' ? 'bg-amber-100 dark:bg-amber-900/30 text-amber-800 dark:text-amber-200' :
-                            'bg-red-100 dark:bg-red-900/30 text-red-800 dark:text-red-200'
+                        input.health === 'WARN' ? 'bg-amber-100 dark:bg-amber-900/30 text-amber-800 dark:text-amber-200' :
+                          'bg-red-100 dark:bg-red-900/30 text-red-800 dark:text-red-200'
                         }`}>
                         {input.health}
                       </div>
@@ -110,8 +110,8 @@ export default function IOCardsSection({ data }: { data: HawkProData }) {
                             <div
                               key={bar}
                               className={`w-1.5 h-3 rounded-full ${bar <= Math.ceil((input.calibratedValue / 100) * 5)
-                                  ? 'bg-emerald-500'
-                                  : 'bg-slate-200 dark:bg-slate-700'
+                                ? 'bg-emerald-500'
+                                : 'bg-slate-200 dark:bg-slate-700'
                                 }`}
                               style={{ height: `${bar * 3}px` }}
                             ></div>

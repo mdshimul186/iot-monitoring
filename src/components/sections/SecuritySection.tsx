@@ -8,18 +8,18 @@ export default function SecuritySection({ data }: { data: HawkProData }) {
   return (
     <section className="space-y-4">
       <div>
-        <h2 className="text-xl font-bold flex items-center gap-2">
-          <span className="text-2xl">🔒</span>
+        <h2 className="text-lg md:text-xl font-bold flex items-center gap-2">
+          <span className="text-xl md:text-2xl">🔒</span>
           Security & Compliance
         </h2>
-        <p className="text-sm text-slate-600 dark:text-slate-400">Enterprise trust, encryption, and regulatory compliance</p>
+        <p className="text-xs md:text-sm text-slate-600 dark:text-slate-400">Enterprise trust, encryption, and regulatory compliance</p>
       </div>
 
       {/* Security Status Badges */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         <div className={`rounded-xl p-5 text-white shadow-lg ${security.encryptionEnabled
-            ? 'bg-gradient-to-br from-emerald-500 to-teal-600'
-            : 'bg-gradient-to-br from-red-500 to-orange-600'
+          ? 'bg-gradient-to-br from-emerald-500 to-teal-600'
+          : 'bg-gradient-to-br from-red-500 to-orange-600'
           }`}>
           <div className="text-3xl mb-2">🔐</div>
           <div className="font-semibold">Encryption</div>
@@ -41,8 +41,8 @@ export default function SecuritySection({ data }: { data: HawkProData }) {
         </div>
 
         <div className={`rounded-xl p-5 text-white shadow-lg ${security.complianceFlags.length === 0
-            ? 'bg-gradient-to-br from-emerald-500 to-green-600'
-            : 'bg-gradient-to-br from-amber-500 to-orange-600'
+          ? 'bg-gradient-to-br from-emerald-500 to-green-600'
+          : 'bg-gradient-to-br from-amber-500 to-orange-600'
           }`}>
           <div className="text-3xl mb-2">📋</div>
           <div className="font-semibold">Compliance</div>
@@ -109,8 +109,8 @@ export default function SecuritySection({ data }: { data: HawkProData }) {
               <div key={i} className="flex items-center justify-between p-3 rounded-lg border dark:border-slate-700">
                 <span className="font-medium text-sm">{check.component}</span>
                 <span className={`px-3 py-1 rounded-full text-xs font-medium ${check.status === 'OK'
-                    ? 'bg-emerald-100 dark:bg-emerald-900/30 text-emerald-800 dark:text-emerald-200'
-                    : 'bg-red-100 dark:bg-red-900/30 text-red-800 dark:text-red-200'
+                  ? 'bg-emerald-100 dark:bg-emerald-900/30 text-emerald-800 dark:text-emerald-200'
+                  : 'bg-red-100 dark:bg-red-900/30 text-red-800 dark:text-red-200'
                   }`}>
                   {check.status}
                 </span>
@@ -191,8 +191,8 @@ export default function SecuritySection({ data }: { data: HawkProData }) {
                   <td className="py-3 px-5">{log.action}</td>
                   <td className="py-3 px-5">
                     <span className={`inline-flex px-2 py-0.5 rounded-full text-xs font-medium ${log.result === 'Success'
-                        ? 'bg-emerald-100 dark:bg-emerald-900/30 text-emerald-800 dark:text-emerald-200'
-                        : 'bg-red-100 dark:bg-red-900/30 text-red-800 dark:text-red-200'
+                      ? 'bg-emerald-100 dark:bg-emerald-900/30 text-emerald-800 dark:text-emerald-200'
+                      : 'bg-red-100 dark:bg-red-900/30 text-red-800 dark:text-red-200'
                       }`}>
                       {log.result}
                     </span>

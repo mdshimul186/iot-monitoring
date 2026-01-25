@@ -10,11 +10,11 @@ export default function ConfigurationSection({ data }: { data: HawkProData }) {
   return (
     <section className="space-y-4">
       <div>
-        <h2 className="text-xl font-bold flex items-center gap-2">
-          <span className="text-2xl">🛠️</span>
+        <h2 className="text-lg md:text-xl font-bold flex items-center gap-2">
+          <span className="text-xl md:text-2xl">🛠️</span>
           Configuration & Device Control
         </h2>
-        <p className="text-sm text-slate-600 dark:text-slate-400">Remote management and device configuration</p>
+        <p className="text-xs md:text-sm text-slate-600 dark:text-slate-400">Remote management and device configuration</p>
       </div>
 
       {/* Quick Actions */}
@@ -101,15 +101,15 @@ export default function ConfigurationSection({ data }: { data: HawkProData }) {
                 key={profile}
                 onClick={() => setSelectedProfile(profile)}
                 className={`p-4 rounded-xl border-2 cursor-pointer transition-all ${selectedProfile === profile
-                    ? 'border-indigo-500 bg-indigo-50 dark:bg-indigo-900/20'
-                    : 'border-slate-200 dark:border-slate-700 hover:border-indigo-300 dark:hover:border-indigo-700'
+                  ? 'border-indigo-500 bg-indigo-50 dark:bg-indigo-900/20'
+                  : 'border-slate-200 dark:border-slate-700 hover:border-indigo-300 dark:hover:border-indigo-700'
                   }`}
               >
                 <div className="flex items-center justify-between mb-2">
                   <div className="font-medium">{profile}</div>
                   <div className={`h-5 w-5 rounded-full border-2 ${selectedProfile === profile
-                      ? 'border-indigo-500 bg-indigo-500'
-                      : 'border-slate-300 dark:border-slate-600'
+                    ? 'border-indigo-500 bg-indigo-500'
+                    : 'border-slate-300 dark:border-slate-600'
                     }`}>
                     {selectedProfile === profile && (
                       <svg className="w-full h-full text-white" fill="currentColor" viewBox="0 0 20 20">
@@ -197,10 +197,10 @@ export default function ConfigurationSection({ data }: { data: HawkProData }) {
         <div className="flex items-center justify-between mb-4">
           <div className="font-semibold">OTA Firmware Update</div>
           <span className={`px-3 py-1 rounded-full text-xs font-medium ${configuration.otaStatus === 'Complete'
-              ? 'bg-emerald-100 dark:bg-emerald-900/30 text-emerald-800 dark:text-emerald-200'
-              : configuration.otaStatus === 'Installing' || configuration.otaStatus === 'Downloading'
-                ? 'bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-200 animate-pulse'
-                : 'bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400'
+            ? 'bg-emerald-100 dark:bg-emerald-900/30 text-emerald-800 dark:text-emerald-200'
+            : configuration.otaStatus === 'Installing' || configuration.otaStatus === 'Downloading'
+              ? 'bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-200 animate-pulse'
+              : 'bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400'
             }`}>
             {configuration.otaStatus}
           </span>

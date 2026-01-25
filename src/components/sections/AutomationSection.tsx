@@ -21,11 +21,11 @@ export default function AutomationSection({ data }: { data: HawkProData }) {
   return (
     <section className="space-y-4">
       <div>
-        <h2 className="text-xl font-bold flex items-center gap-2">
-          <span className="text-2xl">⚙️</span>
+        <h2 className="text-lg md:text-xl font-bold flex items-center gap-2">
+          <span className="text-xl md:text-2xl">⚙️</span>
           Automation, Rules & Task Engine
         </h2>
-        <p className="text-sm text-slate-600 dark:text-slate-400">Edge intelligence control and automated workflows</p>
+        <p className="text-xs md:text-sm text-slate-600 dark:text-slate-400">Edge intelligence control and automated workflows</p>
       </div>
 
       {/* Active Rules */}
@@ -34,8 +34,8 @@ export default function AutomationSection({ data }: { data: HawkProData }) {
           <div key={rule.id} className="rounded-2xl bg-white dark:bg-slate-900 border dark:border-slate-800 shadow-sm overflow-hidden">
             {/* Rule Header */}
             <div className={`p-4 ${rule.enabled
-                ? 'bg-gradient-to-r from-emerald-600 to-teal-600'
-                : 'bg-gradient-to-r from-slate-600 to-slate-700'
+              ? 'bg-gradient-to-r from-emerald-600 to-teal-600'
+              : 'bg-gradient-to-r from-slate-600 to-slate-700'
               } text-white`}>
               <div className="flex items-center justify-between mb-2">
                 <div className="text-sm opacity-90">Automation Rule</div>
@@ -98,8 +98,8 @@ export default function AutomationSection({ data }: { data: HawkProData }) {
                   <div className="text-xs text-slate-500 dark:text-slate-400">{trigger.time}</div>
                 </div>
                 <div className={`px-2 py-1 rounded-full text-xs font-medium ${trigger.result === 'Success'
-                    ? 'bg-emerald-100 dark:bg-emerald-900/30 text-emerald-800 dark:text-emerald-200'
-                    : 'bg-red-100 dark:bg-red-900/30 text-red-800 dark:text-red-200'
+                  ? 'bg-emerald-100 dark:bg-emerald-900/30 text-emerald-800 dark:text-emerald-200'
+                  : 'bg-red-100 dark:bg-red-900/30 text-red-800 dark:text-red-200'
                   }`}>
                   {trigger.result}
                 </div>

@@ -146,7 +146,7 @@ export default function HawkProDashboard() {
 
                             {/* Notification Dropdown */}
                             {showNotifications && data && (
-                                <div className="absolute right-0 mt-2 w-96 bg-white dark:bg-slate-900 border dark:border-slate-700 rounded-xl shadow-2xl z-50 max-h-[32rem] overflow-hidden">
+                                <div className="fixed inset-x-4 top-20 md:absolute md:inset-auto md:right-0 md:top-full md:mt-2 md:w-96 bg-white dark:bg-slate-900 border dark:border-slate-700 rounded-xl shadow-2xl z-50 max-h-[32rem] overflow-hidden">
                                     <div className="p-4 border-b dark:border-slate-700 bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-slate-800 dark:to-slate-800">
                                         <div className="flex items-center justify-between">
                                             <h3 className="font-bold text-lg">Notifications</h3>
@@ -235,7 +235,7 @@ export default function HawkProDashboard() {
                             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
                             </svg>
-                            Refresh
+                            <span className="hidden md:inline">Refresh</span>
                         </button>
                         <button onClick={toggleDark} className="px-3 py-2 rounded-lg border dark:border-slate-700 text-sm hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
                             {isDark ? '☀️' : '🌙'}
