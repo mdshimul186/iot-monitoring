@@ -146,8 +146,8 @@ export default function HawkProDashboard() {
 
                             {/* Notification Dropdown */}
                             {showNotifications && data && (
-                                <div className="fixed inset-x-4 top-20 md:absolute md:inset-auto md:right-0 md:top-full md:mt-2 md:w-96 bg-white dark:bg-slate-900 border dark:border-slate-700 rounded-xl shadow-2xl z-50 max-h-[32rem] overflow-hidden">
-                                    <div className="p-4 border-b dark:border-slate-700 bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-slate-800 dark:to-slate-800">
+                                <div className="fixed inset-x-4 top-20 md:absolute md:inset-auto md:right-0 md:top-full md:mt-2 md:w-96 bg-white dark:bg-slate-900 border dark:border-slate-700 rounded-xl shadow-2xl z-50 max-h-[80vh] md:max-h-[35rem] flex flex-col overflow-hidden">
+                                    <div className="p-4 border-b dark:border-slate-700 bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-slate-800 dark:to-slate-800 flex-shrink-0">
                                         <div className="flex items-center justify-between">
                                             <h3 className="font-bold text-lg">Notifications</h3>
                                             <button
@@ -164,7 +164,7 @@ export default function HawkProDashboard() {
                                         </div>
                                     </div>
 
-                                    <div className="overflow-y-auto max-h-96">
+                                    <div className="overflow-y-auto flex-1">
                                         {data.alerts.active.length > 0 ? (
                                             <div className="divide-y dark:divide-slate-700">
                                                 {data.alerts.active.map((alert) => {
@@ -215,13 +215,13 @@ export default function HawkProDashboard() {
                                     </div>
 
                                     {data.alerts.active.length > 0 && (
-                                        <div className="p-3 border-t dark:border-slate-700 bg-slate-50 dark:bg-slate-800">
+                                        <div className="p-0 border-t dark:border-slate-700 bg-slate-50 dark:bg-slate-800 flex-shrink-0">
                                             <button
                                                 onClick={() => {
                                                     scrollToSection('alerts');
                                                     setShowNotifications(false);
                                                 }}
-                                                className="w-full px-4 py-2 bg-blue-600 text-white rounded-lg text-sm font-medium hover:bg-blue-700 transition-colors"
+                                                className="w-full px-4 py-2.5 bg-blue-600 text-white rounded-lg text-sm font-medium hover:bg-blue-700 transition-colors"
                                             >
                                                 View All Alerts
                                             </button>
