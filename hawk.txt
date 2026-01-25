@@ -1,0 +1,504 @@
+HAWK PRO 
+
+
+  
+A blue circle with white text
+
+AI-generated content may be incorrect.
+ 
+
+•
+ Robust IoT data logger and sensor hub 
+
+
+• Flexible I/O card architecture offers near-limitless sensor integrations 
+
+
+• Integrates with Bluetooth®, SDI-12, 1-Wire,  4-20mA, RS-485, RS-232, Analog Inputs, Digital Inputs, Pulse Counting, Switched Power and more 
+
+
+• Available in several power and housing variations 
+
+
+• OTA device management and configuration 
+
+
+  
+A circuit board with two batteries
+
+AI-generated content may be incorrect.
+ 
+ 
+
+  
+
+  
+
+  
+
+  
+
+  
+A black and white tag
+
+Description automatically generated
+ 
+ 
+  
+  
+  
+  
+  
+ 
+Remote Monitoring 
+ Sensor Hub 
+ Configurable Sampling 
+ Ultra-Low 
+Power 
+ Future Proof  Connectivity 
+ White-Label 
+& Integration Ready 
+ 
+I/O Card Architecture 
+A blue background with white dots
+
+AI-generated content may be incorrect.
+
+Caters to plug-in cards that  define the 9 inputs/outputs, offering near-limitless options  
+for interfacing to sensors. 
+ Unmatched Flexibility 
+
+Select only the hardware components you need to build  your specific solution. 
+ Power Options 
+
+Support for multiple  input-power options including solar, primary cell battery, and  external power. 
+ 
+Housing Options 
+
+Select from our ultra-rugged  
+and waterproof housing options  
+or use your own. 
+ Task Management 
+
+Onboard data processing eliminates network delays and triggers tasks or events when needed. 
+ Onboard Smarts 
+
+Onboard GPS Location, Accelerometer, and Data  Storage. 
+ 
+OTA Device Management 
+
+Remotely configure sensor sampling rates, position updates, upload intervals, and more. 
+ Integration-Ready 
+
+Securely send data to any end platform via TCP Direct or HTTPS Webhook. 
+  
+ 
+ 
+ENVIRONMENTAL MONITORING | AGTECH | TEMP/HUMIDITY | SOIL MOISTURE | WATER MANAGEMENT | TANK LEVEL & QUALITY | STORM & FLOODWATER MONITORING | UTILITIES | WEATHER STATIONS | EQUIPMENT MANAGEMENT | & MORE 
+ 
+ 
+
+
+ 
+Hawk Pro PCB
+ 
+
+Cellular Module 
+ Nordic nRF9160 operates on all major global LTE-M and NB-IoT bands. 
+Supported LTE bands:  
+LTE-M (Cat-M1): B1, B2, B3, B4, B5, B8, B12, B13, B14, B18, B19, B20, B25, B26, B28, B66  
+NB-IoT (Cat-NB1/NB2): B1, B2, B3, B4, B5, B8, B12, B13, B17, B19, B20, B25, B26, B28, B66  
+ 
+SIM Size and Access 
+ Internal Micro 3FF SIM 
+ 
+
+
+ 
+ 
+ 
+
+Temperature Range 
+ Operating: -30°C to +60°C 
+Recommended Storage: 10°C to 30°C, Humidity 30%. Store in a cool, dry place. 
+LiPo Charger: At <-10°C and >+45°C the internal backup battery will not be charged as a safety precaution due to the dangers associated with charging batteries at extreme temperatures. 
+ 
+Self-Resetting Fuse 
+ Built-in self-resetting fuse makes installation simple and safe. 
+ 
+Cellular Antenna 
+ Internal. Option to add high-gain external antenna. 
+ 
+GPS Antenna 
+ Internal 
+ 
+3-Axis Accelerometer 
+ 3-Axis Accelerometer to detect tampering (planned in future firmware release). 
+ 
+Diagnostic LED 
+ 2 Diagnostic LEDs and Push Button for testing and operational status. 
+ 
+Flash Memory 
+ Store records if device is out of cellular coverage. View storage capacity here. 
+ 
+Onboard Temperature 
+ The device reports internal temperature and prevents the internal battery from charging in extreme temperatures. Internal temperature provides an indication of ambient temperature but may 
+ 
+
+
+not always be precise. Use an external sensor for precise temperature monitoring. 
+ 
+
+
+ 
+Onboard Location 
+  
+ 
+
+Module 
+ Nordic nRF9160 internal GPS 
+ 
+Constellation 
+ GPS 
+ 
+Location Accuracy* 
+ ~3m CEP 
+ 
+GNSS Assistance 
+ GPS predicted ephemeris data for greater sensitivity and position accuracy. 
+ 
+Low Noise Amplifier 
+ GPS signals are boosted by a low-noise amplifier (LNA) allowing operation in low signal. 
+ 
+* Positioning accuracy specifications are provided by the module supplier and reflect ideal conditions. Device configuration, installation, environmental conditions, augmentation services, and many other factors may lead to variations in positioning accuracy. 
+ 
+
+
+ 
+Onboard 
+  
+ 
+
+Digital Input  
+ 1 x Digital input with configurable pull up/pull down 0-40V DC input range On/Off thresholds: ON > 2V, Off < 1V Can be used for pulse counting (max 40MHz) 
+ 
+Plugin Board 
+ The versatile and flexible Hawk architecture caters for plug-in cards that define the 9 inputs/outputs, offering limitless options for interfacing to sensors. Flexible onboard output power to power your sensors. See the current card list below or contact us to discuss your requirements. 
+ 
+
+
+ 
+Onboard 
+ 
+
+Voltage Monitoring 
+ LiPo battery and external voltage readings for ‘Battery Low’ and ‘Power Loss’ alerts. 
+ 
+Task Management 
+ Powerful onboard task management allows you to schedule tasks or run tasks based on sensor thresholds and events, even when out of cellular coverage. 
+ 
+
+
+ 
+Hawk Pro Power Options
+
+
+ 
+
+Large Rechargeable Battery 
+ 3500mAh LiPo rechargeable battery 
+ 
+Input Voltage 
+ 6-28V DC (max). For continuous operation at high temperatures and high output load currents we recommend an input voltage of 12V or higher. 
+ 
+Self-Resetting Fuse 
+ Built-in self-resetting fuse makes installation simple and safe. 
+ 
+Solar Power Support 
+ Designed to optionally use a variety of solar panels. 
+ 
+
+
+ 
+D Cell 
+
+
+ 
+
+User-Replaceable Batteries 
+ 2 x D Cell (3.6V per cell). Batteries not included. 
+ 
+Supported Battery Types 
+ Lithium Thionyl Chloride (LTC). Battery selection is very important. Follow this link to learn more. 
+ 
+
+
+ 
+ 
+
+
+
+ 
+
+Dimensions 
+ 180 x 119 x 39 mm (7.1 x 4.7 x 1.5 in) 
+ 
+Housing 
+ Non-branded nylon glass housing is suitable for white labeling. 
+ 
+
+
+IP/IK Rating 
+ Ultra-rugged and waterproof IP68 and IK08-rated housing to ensure the device can withstand impact, fine dust, and brief submersion. 
+ 
+GORE® Vent 
+ Allows for pressure equalization while protecting against water and dust ingress. 
+ 
+Installation 
+ Multiple installation options for securing the device with screws, bolts, cable ties, rivets, and more. Includes 2 cable glands to allow for waterproof cable entry to the housing. 
+ 
+
+
+ 
+ 
+
+
+
+ 
+
+Dimensions 
+ 185 x 150 x 30 mm (7.3 x 5.9 x 1.2 in) 
+ 
+Housing 
+ Non-branded nylon glass housing is suitable for white labeling. 
+ 
+IP/IK Rating 
+ Ultra-rugged and waterproof IP68 and IK07-rated housing to ensure the device can withstand impact, fine dust, and brief submersion. 
+ 
+Optional GORE® Vent 
+ Allows for pressure equalization while protecting against water and dust ingress. 
+ 
+Installation 
+ Multiple installation options for securing the device with screws, bolts, cable ties, rivets, and more. Includes 2 cable glands to allow for waterproof cable entry to the housing. 
+ 
+
+
+ 
+ 
+
+ 
+
+Flexible Configuration 
+ Remotely configure sensor sampling rates, position updates, upload intervals, and more. 
+ 
+Device Management Platform 
+ Manage, monitor, configure, debug, update, and restart devices remotely from our cloud-based device management system. 
+ 
+Configuration App 
+ Configurable with DM-Link provisioning tool. 
+ 
+
+
+ 
+Integration 
+ 
+
+Third-Party Integration 
+ TCP Direct or HTTPS Webhook 
+ 
+API 
+ Command and configure the device via rich API functionality. 
+ 
+
+
+ 
+Security 
+ 
+
+Data Security 
+ Military-grade AES-256 Encryption from device to Device Manager to protect the integrity and confidentiality of your data. Data forwarded to third-party systems is sent via HTTPS for end-to-end security. 
+ 
+
+
+ 
+Warranty 
+ 
+
+Manufacturer’s Warranty 
+ Two-year manufacturer’s warranty. Exclusions apply. 
+ 
+ 
+Certifications 
+ 
+Please view our knowledge base for regulatory and network certifications. 
+ 
+
+
+ 
+ 
+ 
+I/O Cards
+ 
+
+Digital Input 
+ 1 x Digital Input with configurable pull up/pull down 0-40V DC input range On/Off thresholds: On >2V, Off <1V Can be used for pulse counting (max 40Hz) 
+ 
+Digital Output 
+ 1 x Switched Ground (1A current limit) 
+ 
+I²C SDA/SCL 
+ Yes 
+ 
+SDI-12 
+ Yes 
+ 
+
+
+Switched Power Out 
+ 3.3V Switched Power for Sensors 
+ 
+Switched Sensor Power 
+ 5V or 12V Selectable Power for Sensors 
+ 
+1-Wire® 
+ Yes 
+ 
+4-20mA 
+ Yes 
+ 
+
+
+ 
+Agtech2 
+ 
+
+Analog Inputs 
+ 4 x Analog Inputs (0-30V range) 
+ 
+Digital Output 
+ 1 x Switched Ground (1A current limit) 
+ 
+SDI-12 
+ Yes 
+ 
+Switched Power Out 
+ 3.3V Switched Power for Sensors 
+ 
+Switched Sensor Power 
+ 5V or 12V Selectable Power for Sensors 
+ 
+1-Wire® 
+ Yes 
+ 
+
+
+ 
+Bluetooth+ Card 
+ 
+
+Bluetooth Module 
+ BGM240PA22VNA3 
+ 
+Analog Input 
+ 1 x Analog Input (0-30V range) 
+ 
+Digital Input 
+ 1 x Digital Input with configurable pull up/pull down 0-40V DC input range On/Off thresholds: On >2V, Off <1V Can be used for pulse counting (max 40Hz) 
+ 
+Digital Output 
+ 1 x Switched Ground (1A current limit) 
+ 
+Power Out 
+ 3.3V Power Out for Sensors 
+ 
+Switched Power Out 
+ 5V or 12V Selectable Power Out for Sensors 
+ 
+
+
+SDI-12 
+ Yes 
+ 
+I²C SDA/SCL 
+ Yes 
+ 
+4-20mA 
+ Yes 
+ 
+
+
+ 
+Digital Card 
+ 
+
+Analog Inputs 
+ 2 x Analog Inputs (0-30V range) 
+ 
+Digital Inputs 
+ 5 x Digital Inputs with configurable pull up/pull down 0-40V DC input range On/Off thresholds: On >2V, Off <1V Can be used for pulse counting (max 40Hz) 
+ 
+Digital Output 
+ 1 x Switched Ground 
+ 
+Switched Power Out 
+ 5V or 12V Selectable Power Out for Sensors 
+ 
+
+
+ 
+RS-1 Card 
+ 
+
+Analog Input 
+ 1 x Analog Input (0-30V range) 
+ 
+Digital Input 
+ 1 x Digital Input with configurable pull up/pull down 0-40V DC input range On/Off thresholds: On >2V, Off <1V Can be used for pulse counting (max 40Hz) 
+ 
+Digital Output 
+ 1 x Switched Ground 
+ 
+RS485 TX/RX 
+ Yes 
+ 
+Power Out 
+ 3.3V Power Out for Sensors 
+ 
+Switched Power Out 
+ 5V or 12V Selectable Power Out for Sensors 
+ 
+1-Wire® 
+ Yes 
+ 
+4-20mA 
+ 1 x 4-20mA input 
+ 
+
+
+ 
+Serial Card 
+ 
+
+Analog Input 
+ 1 x Analog Input (0-30V range) 
+ 
+Digital Inputs 
+ 2 x Digital Input with configurable pull up/pull down 0-40V DC input range On/Off thresholds: On >2V, Off <1V Can be used for pulse counting (max 40Hz) 
+ 
+Digital Output 
+ 1 x Switched Ground (1A current limit) 
+ 
+Switched Power Out 
+ 5V or 12V Selectable Power Out for Sensors 
+ 
+RS232 TX/RX 
+ Yes 
+ 
+TTL TX/RX 
+ Yes 
+ 
+
+
+ 
+ 
+

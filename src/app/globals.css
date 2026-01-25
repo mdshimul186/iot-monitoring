@@ -1,8 +1,19 @@
 @import "tailwindcss";
 
+@variant dark (&:where(.dark, .dark *));
+
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --border-color: #e2e8f0;
+  --border-color-hover: #cbd5e1;
+}
+
+.dark {
+  --background: #0a0a0a;
+  --foreground: #ededed;
+  --border-color: #334155;
+  --border-color-hover: #475569;
 }
 
 @theme inline {
@@ -12,15 +23,82 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+/* nicer scrollbar (optional) */
+::-webkit-scrollbar {
+  height: 10px;
+  width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, .6);
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(15, 23, 42, .05);
+}
+
+/* Global border and styling improvements */
+* {
+  border-color: var(--border-color);
+}
+
+/* Smooth transitions */
+button,
+input,
+select,
+textarea {
+  transition: all 0.2s ease;
+}
+
+/* Better input styling */
+input[type="text"],
+input[type="number"],
+select,
+textarea {
+  border-color: var(--border-color);
+}
+
+input[type="text"]:hover,
+input[type="number"]:hover,
+select:hover,
+textarea:hover {
+  border-color: var(--border-color-hover);
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  border-color: rgb(99, 102, 241);
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+}
+
+/* Better button hover states */
+button:not(:disabled):hover {
+  transform: translateY(-1px);
+}
+
+button:not(:disabled):active {
+  transform: translateY(0);
+}
+
+/* Card hover effects */
+.rounded-2xl {
+  transition: all 0.3s ease;
+}
+
+.rounded-2xl:hover {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.dark .rounded-2xl:hover {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
 }
