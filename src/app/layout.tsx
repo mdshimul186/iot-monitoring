@@ -17,6 +17,10 @@ const jetBrainsMono = JetBrains_Mono({
 export const metadata: Metadata = {
   title: "BIMIQ | Next-Gen IoT Monitoring",
   description: "Enterprise-grade IoT data logging, sensor monitoring, and real-time analytics dashboard.",
+  icons: {
+    icon: '/white_logo.png',
+    apple: '/white_logo.png',
+  },
 };
 
 export default function RootLayout({
