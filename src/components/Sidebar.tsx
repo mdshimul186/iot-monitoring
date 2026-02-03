@@ -12,11 +12,15 @@ interface MenuItem {
 interface SidebarProps {
     activeSection: string;
     onSectionClick: (sectionId: string) => void;
+    isMobileOpen: boolean;
+    onMobileClose: () => void;
 }
 
 export default function Sidebar({
     activeSection,
     onSectionClick,
+    isMobileOpen,
+    onMobileClose,
 }: SidebarProps) {
     const [isCollapsed, setIsCollapsed] = useState(false);
     const [expandedMenus, setExpandedMenus] = useState<string[]>(['buildings', 'monitoring', 'system']);
@@ -107,13 +111,16 @@ export default function Sidebar({
         <>
             {/* Sidebar */}
             <aside
-                className={`fixed left-0 top-16 h-[calc(100vh-4rem)] bg-white dark:bg-slate-900 border-r dark:border-slate-800 transition-all duration-300 z-40 flex flex-col shadow-xl ${isCollapsed ? 'w-16' : 'w-72'
-                    }`}
+                className={`fixed left-0 top-16 h-[calc(100vh-4rem)] bg-white dark:bg-slate-900 border-r dark:border-slate-800 transition-all duration-300 z-40 flex flex-col shadow-xl ${
+                    isCollapsed ? 'w-16' : 'w-72'
+                } ${
+                    isMobileOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'
+                }`}
             >
-                {/* Collapse Toggle Button - Floating on the edge */}
+                {/* Collapse Toggle Button - Floating on the edge (Desktop only) */}
                 <button
                     onClick={() => setIsCollapsed(!isCollapsed)}
-                    className="absolute -right-3 top-4 z-10 h-6 w-6 rounded-full bg-white dark:bg-slate-800 border-2 border-slate-200 dark:border-slate-700 hover:border-blue-500 dark:hover:border-blue-500 transition-all shadow-md flex items-center justify-center group"
+                    className="absolute -right-3 top-4 z-10 h-6 w-6 rounded-full bg-white dark:bg-slate-800 border-2 border-slate-200 dark:border-slate-700 hover:border-blue-500 dark:hover:border-blue-500 transition-all shadow-md hidden lg:flex items-center justify-center group"
                     title={isCollapsed ? 'Expand sidebar' : 'Collapse sidebar'}
                 >
                     <svg
@@ -193,10 +200,10 @@ export default function Sidebar({
             </aside>
 
             {/* Mobile Overlay */}
-            {!isCollapsed && (
+            {isMobileOpen && (
                 <div
-                    className="fixed inset-0 bg-black/20 backdrop-blur-sm z-40 lg:hidden"
-                    onClick={() => setIsCollapsed(true)}
+                    className="fixed inset-0 bg-black/50 backdrop-blur-sm z-30 lg:hidden"
+                    onClick={onMobileClose}
                 />
             )}
         </>

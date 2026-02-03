@@ -55,6 +55,7 @@ export default function HawkProDashboard() {
     const [activeSection, setActiveSection] = useState<string>('all');
     const [showNotifications, setShowNotifications] = useState(false);
     const [showUserMenu, setShowUserMenu] = useState(false);
+    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
     useEffect(() => {
         setData(generateHawkProData());
@@ -105,6 +106,20 @@ export default function HawkProDashboard() {
             <header className="fixed top-0 left-0 right-0 z-50 bg-white/95 dark:bg-slate-900/95 backdrop-blur border-b dark:border-slate-800 shadow-sm">
                 <div className="h-16 px-4 flex items-center justify-between gap-4">
                     <div className="flex items-center gap-3 min-w-[180px]">
+                        {/* Mobile Menu Button */}
+                        <button
+                            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                            className="lg:hidden p-2 rounded-lg border dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors"
+                            aria-label="Toggle menu"
+                        >
+                            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                {isMobileMenuOpen ? (
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                                ) : (
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                                )}
+                            </svg>
+                        </button>
                         <div className="h-12 w-40 relative">
                             <Image
                                 src={isDark ? "/dark_logo.png" : "/white_logo.png"}
@@ -236,7 +251,12 @@ export default function HawkProDashboard() {
             {/* Sidebar Navigation */}
             <Sidebar
                 activeSection={activeSection}
-                onSectionClick={scrollToSection}
+                onSectionClick={(id) => {
+                    scrollToSection(id);
+                    setIsMobileMenuOpen(false);
+                }}
+                isMobileOpen={isMobileMenuOpen}
+                onMobileClose={() => setIsMobileMenuOpen(false)}
             />
 
             {/* Notification Modal */}
@@ -331,7 +351,7 @@ export default function HawkProDashboard() {
             )}
 
             {/* Main Content */}
-            <main className="ml-16 lg:ml-72 mt-16 transition-all duration-300 px-6 py-6 space-y-8">
+            <main className="ml-0 lg:ml-72 mt-16 transition-all duration-300 px-4 lg:px-6 py-6 space-y-8">
                 <div id="construction"><ConstructionSection data={data} /></div>
                 <div id="executive"><ExecutiveOverview data={data} /></div>
                 <div id="health"><DeviceHealth data={data} /></div>
