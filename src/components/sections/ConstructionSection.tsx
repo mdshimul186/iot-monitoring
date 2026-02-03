@@ -2,9 +2,46 @@
 
 import { HawkProData } from '@/lib/hawk-pro-data';
 import { Line } from 'react-chartjs-2';
+import { useState, useEffect } from 'react';
 
 export default function ConstructionSection({ data }: { data: HawkProData }) {
-    const { construction } = data;
+    const [construction, setConstruction] = useState(data.construction);
+    const [isLive, setIsLive] = useState(true);
+    const [lastUpdate, setLastUpdate] = useState(new Date());
+
+    // Simulate live data updates every 3 seconds
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setConstruction(prev => ({
+                ...prev,
+                energyPerformance: {
+                    ...prev.energyPerformance,
+                    currentUsage: Math.max(600, Math.min(1500, prev.energyPerformance.currentUsage + (Math.random() - 0.5) * 80)),
+                    efficiency: Math.max(75, Math.min(98, prev.energyPerformance.efficiency + (Math.random() - 0.5) * 2)),
+                    costToday: Math.max(2000, Math.min(5000, prev.energyPerformance.costToday + (Math.random() - 0.5) * 100)),
+                    history: [...prev.energyPerformance.history.slice(1), Math.max(600, Math.min(1500, prev.energyPerformance.history[prev.energyPerformance.history.length - 1] + (Math.random() - 0.5) * 80))]
+                },
+                occupancy: {
+                    ...prev.occupancy,
+                    current: Math.max(1000, Math.min(3200, prev.occupancy.current + Math.floor((Math.random() - 0.5) * 100))),
+                    trafficFlow: [...prev.occupancy.trafficFlow.slice(1), Math.max(20, Math.min(400, prev.occupancy.trafficFlow[prev.occupancy.trafficFlow.length - 1] + (Math.random() - 0.5) * 40))],
+                    zones: prev.occupancy.zones.map(zone => {
+                        const newCurrent = Math.max(0, Math.min(zone.capacity, zone.current + Math.floor((Math.random() - 0.5) * 20)));
+                        return {
+                            ...zone,
+                            current: newCurrent,
+                            utilization: Math.round((newCurrent / zone.capacity) * 100)
+                        };
+                    })
+                }
+            }));
+            setLastUpdate(new Date());
+            setIsLive(false);
+            setTimeout(() => setIsLive(true), 300);
+        }, 3000);
+
+        return () => clearInterval(interval);
+    }, []);
 
     const chartOptions = {
         responsive: true,
@@ -254,11 +291,17 @@ export default function ConstructionSection({ data }: { data: HawkProData }) {
                 <div className="rounded-2xl bg-white dark:bg-slate-900 border dark:border-slate-800 p-5 shadow-sm">
                     <div className="flex items-center justify-between mb-4">
                         <div>
-                            <h3 className="font-bold text-lg">Energy Performance</h3>
+                            <div className="flex items-center gap-2">
+                                <h3 className="font-bold text-lg">Energy Performance</h3>
+                                <div className="flex items-center gap-1.5 px-2 py-1 rounded-full bg-blue-100 dark:bg-blue-900/30 border border-blue-200 dark:border-blue-800">
+                                    <div className={`h-1.5 w-1.5 rounded-full bg-blue-500 ${isLive ? 'animate-pulse' : ''}`}></div>
+                                    <span className="text-[10px] font-bold text-blue-700 dark:text-blue-300">LIVE</span>
+                                </div>
+                            </div>
                             <p className="text-xs text-slate-500 dark:text-slate-400">Real-time energy monitoring</p>
                         </div>
                         <div className="text-right">
-                            <div className="text-2xl font-bold">{construction.energyPerformance.currentUsage.toFixed(0)} kW</div>
+                            <div className="text-2xl font-bold transition-all duration-500">{construction.energyPerformance.currentUsage.toFixed(0)} kW</div>
                             <div className="text-xs text-slate-500 dark:text-slate-400">Current Usage</div>
                         </div>
                     </div>
@@ -268,7 +311,7 @@ export default function ConstructionSection({ data }: { data: HawkProData }) {
                     <div className="grid grid-cols-3 gap-3">
                         <div className="text-center p-3 rounded-lg bg-slate-50 dark:bg-slate-800">
                             <div className="text-xs text-slate-500 dark:text-slate-400">Efficiency</div>
-                            <div className="text-lg font-bold mt-1">{construction.energyPerformance.efficiency}%</div>
+                            <div className="text-lg font-bold mt-1 transition-all duration-500">{construction.energyPerformance.efficiency.toFixed(0)}%</div>
                         </div>
                         <div className="text-center p-3 rounded-lg bg-slate-50 dark:bg-slate-800">
                             <div className="text-xs text-slate-500 dark:text-slate-400">Peak Demand</div>
@@ -276,8 +319,11 @@ export default function ConstructionSection({ data }: { data: HawkProData }) {
                         </div>
                         <div className="text-center p-3 rounded-lg bg-slate-50 dark:bg-slate-800">
                             <div className="text-xs text-slate-500 dark:text-slate-400">Cost Today</div>
-                            <div className="text-lg font-bold mt-1">${construction.energyPerformance.costToday.toFixed(0)}</div>
+                            <div className="text-lg font-bold mt-1 transition-all duration-500">${construction.energyPerformance.costToday.toFixed(0)}</div>
                         </div>
+                    </div>
+                    <div className="mt-3 text-center text-[10px] text-slate-500 dark:text-slate-400">
+                        Last updated: {lastUpdate.toLocaleTimeString()} • Updating every 3s
                     </div>
                 </div>
 
@@ -285,11 +331,17 @@ export default function ConstructionSection({ data }: { data: HawkProData }) {
                 <div className="rounded-2xl bg-white dark:bg-slate-900 border dark:border-slate-800 p-5 shadow-sm">
                     <div className="flex items-center justify-between mb-4">
                         <div>
-                            <h3 className="font-bold text-lg">Occupancy & Traffic</h3>
+                            <div className="flex items-center gap-2">
+                                <h3 className="font-bold text-lg">Occupancy & Traffic</h3>
+                                <div className="flex items-center gap-1.5 px-2 py-1 rounded-full bg-purple-100 dark:bg-purple-900/30 border border-purple-200 dark:border-purple-800">
+                                    <div className={`h-1.5 w-1.5 rounded-full bg-purple-500 ${isLive ? 'animate-pulse' : ''}`}></div>
+                                    <span className="text-[10px] font-bold text-purple-700 dark:text-purple-300">LIVE</span>
+                                </div>
+                            </div>
                             <p className="text-xs text-slate-500 dark:text-slate-400">Real-time people flow</p>
                         </div>
                         <div className="text-right">
-                            <div className="text-2xl font-bold">{construction.occupancy.current}</div>
+                            <div className="text-2xl font-bold transition-all duration-500">{construction.occupancy.current}</div>
                             <div className="text-xs text-slate-500 dark:text-slate-400">Current Occupancy</div>
                         </div>
                     </div>
@@ -303,14 +355,17 @@ export default function ConstructionSection({ data }: { data: HawkProData }) {
                                 <div className="flex items-center gap-2">
                                     <div className="w-24 h-2 bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden">
                                         <div
-                                            className={`h-full rounded-full ${zone.utilization > 80 ? 'bg-red-500' : zone.utilization > 60 ? 'bg-amber-500' : 'bg-emerald-500'}`}
+                                            className={`h-full rounded-full transition-all duration-500 ${zone.utilization > 80 ? 'bg-red-500' : zone.utilization > 60 ? 'bg-amber-500' : 'bg-emerald-500'}`}
                                             style={{ width: `${zone.utilization}%` }}
                                         ></div>
                                     </div>
-                                    <div className="text-xs font-medium w-16 text-right">{zone.current}/{zone.capacity}</div>
+                                    <div className="text-xs font-medium w-16 text-right transition-all duration-500">{zone.current}/{zone.capacity}</div>
                                 </div>
                             </div>
                         ))}
+                    </div>
+                    <div className="mt-3 text-center text-[10px] text-slate-500 dark:text-slate-400">
+                        Last updated: {lastUpdate.toLocaleTimeString()} • Updating every 3s
                     </div>
                 </div>
             </div>
