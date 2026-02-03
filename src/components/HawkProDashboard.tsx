@@ -3,6 +3,8 @@
 import { useState, useEffect } from 'react';
 import { generateHawkProData, HawkProData } from '@/lib/hawk-pro-data';
 import dynamic from 'next/dynamic';
+import Sidebar from './Sidebar';
+import Image from 'next/image';
 import {
     Chart as ChartJS,
     CategoryScale,
@@ -45,12 +47,14 @@ const AnalyticsHistorySection = dynamic(() => import('./sections/AnalyticsHistor
 const ConfigurationSection = dynamic(() => import('./sections/ConfigurationSection'), { ssr: false });
 const SecuritySection = dynamic(() => import('./sections/SecuritySection'), { ssr: false });
 const FleetViewSection = dynamic(() => import('./sections/FleetViewSection'), { ssr: false });
+const ConstructionSection = dynamic(() => import('./sections/ConstructionSection'), { ssr: false });
 
 export default function HawkProDashboard() {
     const [data, setData] = useState<HawkProData | null>(null);
     const [isDark, setIsDark] = useState(false);
     const [activeSection, setActiveSection] = useState<string>('all');
     const [showNotifications, setShowNotifications] = useState(false);
+    const [showUserMenu, setShowUserMenu] = useState(false);
 
     useEffect(() => {
         setData(generateHawkProData());
@@ -72,7 +76,7 @@ export default function HawkProDashboard() {
     const scrollToSection = (sectionId: string) => {
         const element = document.getElementById(sectionId);
         if (element) {
-            const offset = 100; // Account for sticky navbar
+            const offset = 20;
             const elementPosition = element.getBoundingClientRect().top;
             const offsetPosition = elementPosition + window.pageYOffset - offset;
 
@@ -89,184 +93,246 @@ export default function HawkProDashboard() {
             <div className="min-h-screen grid place-items-center bg-slate-50 dark:bg-slate-950">
                 <div className="text-center">
                     <div className="inline-block h-12 w-12 animate-spin rounded-full border-4 border-solid border-blue-600 border-r-transparent"></div>
-                    <div className="mt-4 text-slate-600 dark:text-slate-400">Loading Hawk Pro Dashboard...</div>
+                    <div className="mt-4 text-slate-600 dark:text-slate-400">Loading BIMIQ Dashboard...</div>
                 </div>
             </div>
         );
     }
 
-    const sections = [
-        { id: 'executive', name: 'Executive', icon: '📊' },
-        { id: 'health', name: 'Health', icon: '🏥' },
-        { id: 'connectivity', name: 'Network', icon: '📡' },
-        { id: 'environmental', name: 'Environment', icon: '🌡️' },
-        { id: 'agriculture', name: 'AgTech', icon: '🌾' },
-        { id: 'water', name: 'Water', icon: '💧' },
-        { id: 'io', name: 'I/O Cards', icon: '🔌' },
-        { id: 'gps', name: 'GPS', icon: '📍' },
-        { id: 'automation', name: 'Rules', icon: '⚙️' },
-        { id: 'alerts', name: 'Alerts', icon: '🚨' },
-        { id: 'analytics', name: 'Analytics', icon: '📈' },
-        { id: 'config', name: 'Config', icon: '🛠️' },
-        { id: 'security', name: 'Security', icon: '🔒' },
-        { id: 'fleet', name: 'Fleet', icon: '🌐' },
-    ];
-
     return (
         <div className={`min-h-screen bg-slate-50 dark:bg-slate-950 ${isDark ? 'dark' : ''}`}>
             {/* Top Navigation */}
-            <nav className="sticky top-0 z-50 bg-white/95 dark:bg-slate-900/95 backdrop-blur border-b dark:border-slate-800 shadow-sm">
-                <div className="mx-auto max-w-7xl px-4 py-3 flex items-center justify-between gap-4">
-                    <div className="flex items-center gap-3">
-                        <div className="h-10 w-10 rounded-xl bg-gradient-to-br from-blue-600 to-indigo-700 text-white grid place-items-center font-bold text-lg shadow-lg">
-                            H
-                        </div>
-                        <div>
-                            <div className="font-bold text-lg">Hawk Pro</div>
-                            <div className="text-xs text-slate-500 dark:text-slate-400">IoT Data Logger & Sensor Hub</div>
+            <header className="fixed top-0 left-0 right-0 z-50 bg-white/95 dark:bg-slate-900/95 backdrop-blur border-b dark:border-slate-800 shadow-sm">
+                <div className="h-16 px-4 flex items-center justify-between gap-4">
+                    <div className="flex items-center gap-3 min-w-[180px]">
+                        <div className="h-12 w-40 relative">
+                            <Image
+                                src={isDark ? "/dark_logo.png" : "/white_logo.png"}
+                                alt="BIMIQ Logo"
+                                fill
+                                className="object-contain"
+                                priority
+                            />
                         </div>
                     </div>
 
                     <div className="flex items-center gap-2">
                         {/* Notification Bell */}
-                        <div className="relative">
-                            <button
-                                onClick={() => setShowNotifications(!showNotifications)}
-                                className="relative px-3 py-2 rounded-lg border dark:border-slate-700 text-sm hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors"
-                            >
-                                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
-                                </svg>
-                                {data && data.alerts.active.length > 0 && (
-                                    <span className="absolute -top-1 -right-1 h-5 w-5 bg-red-500 text-white text-xs font-bold rounded-full flex items-center justify-center animate-pulse">
-                                        {data.alerts.active.length}
-                                    </span>
-                                )}
-                            </button>
-
-                            {/* Notification Dropdown */}
-                            {showNotifications && data && (
-                                <div className="fixed inset-x-4 top-20 md:absolute md:inset-auto md:right-0 md:top-full md:mt-2 md:w-96 bg-white dark:bg-slate-900 border dark:border-slate-700 rounded-xl shadow-2xl z-50 max-h-[80vh] md:max-h-[35rem] flex flex-col overflow-hidden">
-                                    <div className="p-4 border-b dark:border-slate-700 bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-slate-800 dark:to-slate-800 flex-shrink-0">
-                                        <div className="flex items-center justify-between">
-                                            <h3 className="font-bold text-lg">Notifications</h3>
-                                            <button
-                                                onClick={() => setShowNotifications(false)}
-                                                className="text-slate-400 hover:text-slate-600 dark:hover:text-slate-300"
-                                            >
-                                                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                                                </svg>
-                                            </button>
-                                        </div>
-                                        <div className="text-xs text-slate-600 dark:text-slate-400 mt-1">
-                                            {data.alerts.active.length} active alert{data.alerts.active.length !== 1 ? 's' : ''}
-                                        </div>
-                                    </div>
-
-                                    <div className="overflow-y-auto flex-1">
-                                        {data.alerts.active.length > 0 ? (
-                                            <div className="divide-y dark:divide-slate-700">
-                                                {data.alerts.active.map((alert) => {
-                                                    const severityColors = {
-                                                        'Critical': 'bg-red-100 dark:bg-red-900/30 text-red-800 dark:text-red-200 border-l-red-500',
-                                                        'High': 'bg-orange-100 dark:bg-orange-900/30 text-orange-800 dark:text-orange-200 border-l-orange-500',
-                                                        'Medium': 'bg-amber-100 dark:bg-amber-900/30 text-amber-800 dark:text-amber-200 border-l-amber-500',
-                                                        'Low': 'bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-200 border-l-blue-500',
-                                                    };
-
-                                                    return (
-                                                        <div
-                                                            key={alert.id}
-                                                            className={`p-4 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors border-l-4 ${severityColors[alert.severity as keyof typeof severityColors]}`}
-                                                        >
-                                                            <div className="flex items-start gap-3">
-                                                                <div className="text-2xl">🚨</div>
-                                                                <div className="flex-1 min-w-0">
-                                                                    <div className="flex items-center gap-2 mb-1">
-                                                                        <span className={`px-2 py-0.5 rounded-full text-xs font-bold ${alert.severity === 'Critical' ? 'bg-red-500 text-white' :
-                                                                            alert.severity === 'High' ? 'bg-orange-500 text-white' :
-                                                                                alert.severity === 'Medium' ? 'bg-amber-500 text-white' :
-                                                                                    'bg-blue-500 text-white'
-                                                                            }`}>
-                                                                            {alert.severity}
-                                                                        </span>
-                                                                        <span className="text-xs text-slate-500 dark:text-slate-400">
-                                                                            {alert.timestamp}
-                                                                        </span>
-                                                                    </div>
-                                                                    <div className="font-semibold text-sm mb-1">{alert.message}</div>
-                                                                    <div className="text-xs text-slate-600 dark:text-slate-400">
-                                                                        Channel: {alert.channel} • ID: {alert.id}
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    );
-                                                })}
-                                            </div>
-                                        ) : (
-                                            <div className="p-8 text-center text-slate-400">
-                                                <div className="text-5xl mb-3">✓</div>
-                                                <div className="font-semibold">No Active Alerts</div>
-                                                <div className="text-xs mt-1">All systems operating normally</div>
-                                            </div>
-                                        )}
-                                    </div>
-
-                                    {data.alerts.active.length > 0 && (
-                                        <div className="p-0 border-t dark:border-slate-700 bg-slate-50 dark:bg-slate-800 flex-shrink-0">
-                                            <button
-                                                onClick={() => {
-                                                    scrollToSection('alerts');
-                                                    setShowNotifications(false);
-                                                }}
-                                                className="w-full px-4 py-2.5 bg-blue-600 text-white rounded-lg text-sm font-medium hover:bg-blue-700 transition-colors"
-                                            >
-                                                View All Alerts
-                                            </button>
-                                        </div>
-                                    )}
-                                </div>
+                        <button
+                            onClick={() => setShowNotifications(!showNotifications)}
+                            className="relative px-3 py-2 rounded-lg border dark:border-slate-700 text-sm hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors"
+                            title="Notifications"
+                        >
+                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+                            </svg>
+                            {data && data.alerts.active.length > 0 && (
+                                <span className="absolute -top-1 -right-1 h-5 w-5 bg-red-500 text-white text-xs font-bold rounded-full flex items-center justify-center animate-pulse">
+                                    {data.alerts.active.length}
+                                </span>
                             )}
-                        </div>
+                        </button>
 
-                        <button onClick={handleRefresh} className="px-3 py-2 rounded-lg bg-blue-600 text-white text-sm hover:bg-blue-700 transition-colors flex items-center gap-2">
+                        {/* Refresh Button */}
+                        <button
+                            onClick={handleRefresh}
+                            className="px-3 py-2 rounded-lg bg-blue-600 text-white text-sm hover:bg-blue-700 transition-colors flex items-center gap-2"
+                            title="Refresh Data"
+                        >
                             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
                             </svg>
                             <span className="hidden md:inline">Refresh</span>
                         </button>
-                        <button onClick={toggleDark} className="px-3 py-2 rounded-lg border dark:border-slate-700 text-sm hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
+
+                        {/* Dark Mode Toggle */}
+                        <button
+                            onClick={toggleDark}
+                            className="px-3 py-2 rounded-lg border dark:border-slate-700 text-sm hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors"
+                            title="Toggle Theme"
+                        >
                             {isDark ? '☀️' : '🌙'}
                         </button>
-                    </div>
-                </div>
 
-                {/* Quick Section Navigation */}
-                <div className="overflow-x-auto border-t dark:border-slate-800">
-                    <div className="mx-auto max-w-7xl px-4">
-                        <div className="flex gap-1 py-2">
-                            {sections.map((section) => (
-                                <button
-                                    key={section.id}
-                                    onClick={() => scrollToSection(section.id)}
-                                    className={`px-3 py-1.5 rounded-lg text-xs font-medium whitespace-nowrap transition-colors flex items-center gap-1 ${activeSection === section.id
-                                        ? 'bg-blue-600 text-white'
-                                        : 'hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-400'
-                                        }`}
-                                >
-                                    <span>{section.icon}</span>
-                                    <span>{section.name}</span>
-                                </button>
-                            ))}
+                        {/* User Dropdown */}
+                        <div className="relative">
+                            <button
+                                onClick={() => setShowUserMenu(!showUserMenu)}
+                                className="flex items-center gap-2 px-3 py-2 rounded-lg border dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors"
+                            >
+                                <div className="h-8 w-8 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 text-white text-sm font-bold grid place-items-center">
+                                    JD
+                                </div>
+                                <div className="hidden md:block text-left">
+                                    <div className="text-sm font-medium">John Doe</div>
+                                    <div className="text-xs text-slate-500 dark:text-slate-400">Admin</div>
+                                </div>
+                                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                                </svg>
+                            </button>
+
+                            {/* User Dropdown Menu */}
+                            {showUserMenu && (
+                                <>
+                                    <div className="fixed inset-0 z-40" onClick={() => setShowUserMenu(false)} />
+                                    <div className="absolute right-0 top-full mt-2 w-64 bg-white dark:bg-slate-900 border dark:border-slate-700 rounded-xl shadow-2xl z-50 overflow-hidden">
+                                        <div className="p-4 border-b dark:border-slate-700 bg-gradient-to-br from-blue-50 to-purple-50 dark:from-slate-800 dark:to-slate-800">
+                                            <div className="flex items-center gap-3">
+                                                <div className="h-12 w-12 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 text-white text-lg font-bold grid place-items-center">
+                                                    JD
+                                                </div>
+                                                <div>
+                                                    <div className="font-bold">John Doe</div>
+                                                    <div className="text-xs text-slate-600 dark:text-slate-400">john.doe@hawkpro.io</div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div className="py-2">
+                                            <button className="w-full px-4 py-2.5 text-left text-sm hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors flex items-center gap-3">
+                                                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                                                </svg>
+                                                <span>Profile</span>
+                                            </button>
+                                            <button className="w-full px-4 py-2.5 text-left text-sm hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors flex items-center gap-3">
+                                                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                                </svg>
+                                                <span>Settings</span>
+                                            </button>
+                                            <button className="w-full px-4 py-2.5 text-left text-sm hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors flex items-center gap-3">
+                                                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
+                                                </svg>
+                                                <span>Preferences</span>
+                                            </button>
+                                            <button className="w-full px-4 py-2.5 text-left text-sm hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors flex items-center gap-3">
+                                                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                                </svg>
+                                                <span>Help & Support</span>
+                                            </button>
+                                        </div>
+
+                                        <div className="border-t dark:border-slate-700">
+                                            <button className="w-full px-4 py-2.5 text-left text-sm text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors flex items-center gap-3">
+                                                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+                                                </svg>
+                                                <span>Sign Out</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </>
+                            )}
                         </div>
                     </div>
                 </div>
-            </nav>
+            </header>
+
+            {/* Sidebar Navigation */}
+            <Sidebar
+                activeSection={activeSection}
+                onSectionClick={scrollToSection}
+            />
+
+            {/* Notification Modal */}
+            {showNotifications && data && (
+                <div className="fixed inset-0 z-[60] flex items-start justify-center pt-20 px-4">
+                    <div className="fixed inset-0 bg-black/30 backdrop-blur-sm" onClick={() => setShowNotifications(false)} />
+                    <div className="relative w-full max-w-2xl bg-white dark:bg-slate-900 border dark:border-slate-700 rounded-2xl shadow-2xl max-h-[80vh] flex flex-col overflow-hidden">
+                        <div className="p-6 border-b dark:border-slate-700 bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-slate-800 dark:to-slate-800 flex-shrink-0">
+                            <div className="flex items-center justify-between">
+                                <div>
+                                    <h3 className="font-bold text-2xl">Notifications</h3>
+                                    <div className="text-sm text-slate-600 dark:text-slate-400 mt-1">
+                                        {data.alerts.active.length} active alert{data.alerts.active.length !== 1 ? 's' : ''}
+                                    </div>
+                                </div>
+                                <button
+                                    onClick={() => setShowNotifications(false)}
+                                    className="p-2 rounded-lg text-slate-400 hover:text-slate-600 dark:hover:text-slate-300 hover:bg-white/50 dark:hover:bg-slate-700"
+                                >
+                                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div className="overflow-y-auto flex-1 p-4">
+                            {data.alerts.active.length > 0 ? (
+                                <div className="space-y-3">
+                                    {data.alerts.active.map((alert) => {
+                                        const severityColors = {
+                                            'Critical': 'bg-red-50 dark:bg-red-900/20 border-red-200 dark:border-red-800',
+                                            'High': 'bg-orange-50 dark:bg-orange-900/20 border-orange-200 dark:border-orange-800',
+                                            'Medium': 'bg-amber-50 dark:bg-amber-900/20 border-amber-200 dark:border-amber-800',
+                                            'Low': 'bg-blue-50 dark:bg-blue-900/20 border-blue-200 dark:border-blue-800',
+                                        };
+
+                                        return (
+                                            <div
+                                                key={alert.id}
+                                                className={`p-5 rounded-xl border-2 ${severityColors[alert.severity as keyof typeof severityColors]} transition-all hover:shadow-md`}
+                                            >
+                                                <div className="flex items-start gap-4">
+                                                    <div className="text-3xl">🚨</div>
+                                                    <div className="flex-1 min-w-0">
+                                                        <div className="flex items-center gap-2 mb-2">
+                                                            <span className={`px-3 py-1 rounded-full text-xs font-bold ${alert.severity === 'Critical' ? 'bg-red-500 text-white' :
+                                                                alert.severity === 'High' ? 'bg-orange-500 text-white' :
+                                                                    alert.severity === 'Medium' ? 'bg-amber-500 text-white' :
+                                                                        'bg-blue-500 text-white'
+                                                                }`}>
+                                                                {alert.severity}
+                                                            </span>
+                                                            <span className="text-xs text-slate-500 dark:text-slate-400">
+                                                                {alert.timestamp}
+                                                            </span>
+                                                        </div>
+                                                        <div className="font-bold text-base mb-2">{alert.message}</div>
+                                                        <div className="text-sm text-slate-600 dark:text-slate-400">
+                                                            Channel: <span className="font-medium">{alert.channel}</span> • ID: <span className="font-mono text-xs">{alert.id}</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        );
+                                    })}
+                                </div>
+                            ) : (
+                                <div className="py-16 text-center text-slate-400">
+                                    <div className="text-6xl mb-4">✓</div>
+                                    <div className="font-bold text-xl">No Active Alerts</div>
+                                    <div className="text-sm mt-2">All systems operating normally</div>
+                                </div>
+                            )}
+                        </div>
+
+                        {data.alerts.active.length > 0 && (
+                            <div className="p-4 border-t dark:border-slate-700 bg-slate-50 dark:bg-slate-800 flex-shrink-0">
+                                <button
+                                    onClick={() => {
+                                        scrollToSection('alerts');
+                                        setShowNotifications(false);
+                                    }}
+                                    className="w-full px-6 py-3 bg-blue-600 text-white rounded-xl text-sm font-medium hover:bg-blue-700 transition-colors shadow-lg"
+                                >
+                                    View All Alerts
+                                </button>
+                            </div>
+                        )}
+                    </div>
+                </div>
+            )}
 
             {/* Main Content */}
-            <main className="mx-auto max-w-7xl px-4 py-6 space-y-8">
+            <main className="ml-16 lg:ml-72 mt-16 transition-all duration-300 px-6 py-6 space-y-8">
+                <div id="construction"><ConstructionSection data={data} /></div>
                 <div id="executive"><ExecutiveOverview data={data} /></div>
                 <div id="health"><DeviceHealth data={data} /></div>
                 <div id="connectivity"><ConnectivitySection data={data} /></div>
@@ -285,7 +351,7 @@ export default function HawkProDashboard() {
                 {/* Footer */}
                 <footer className="pt-8 pb-4 text-center text-xs text-slate-500 dark:text-slate-600 border-t dark:border-slate-800">
                     <div className="space-y-1">
-                        <div>Hawk Pro IoT Dashboard • Comprehensive Monitoring & Control System</div>
+                        <div>BIMIQ IoT Dashboard • Comprehensive Monitoring & Control System</div>
                         <div className="text-[10px]">Enterprise-Ready • Government-Compliant • Investor-Grade</div>
                     </div>
                 </footer>

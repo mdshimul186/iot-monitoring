@@ -1,4 +1,4 @@
-HAWK PRO 
+BIMIQ 
 
 
   
@@ -7,20 +7,20 @@ A blue circle with white text
 AI-generated content may be incorrect.
  
 
-•
+ï¿½
  Robust IoT data logger and sensor hub 
 
 
-• Flexible I/O card architecture offers near-limitless sensor integrations 
+ï¿½ Flexible I/O card architecture offers near-limitless sensor integrations 
 
 
-• Integrates with Bluetooth®, SDI-12, 1-Wire,  4-20mA, RS-485, RS-232, Analog Inputs, Digital Inputs, Pulse Counting, Switched Power and more 
+ï¿½ Integrates with Bluetoothï¿½, SDI-12, 1-Wire,  4-20mA, RS-485, RS-232, Analog Inputs, Digital Inputs, Pulse Counting, Switched Power and more 
 
 
-• Available in several power and housing variations 
+ï¿½ Available in several power and housing variations 
 
 
-• OTA device management and configuration 
+ï¿½ OTA device management and configuration 
 
 
   
@@ -100,7 +100,7 @@ ENVIRONMENTAL MONITORING | AGTECH | TEMP/HUMIDITY | SOIL MOISTURE | WATER MANAGE
 
 
  
-Hawk Pro PCB
+BIMIQ PCB
  
 
 Cellular Module 
@@ -119,9 +119,9 @@ SIM Size and Access
  
 
 Temperature Range 
- Operating: -30°C to +60°C 
-Recommended Storage: 10°C to 30°C, Humidity 30%. Store in a cool, dry place. 
-LiPo Charger: At <-10°C and >+45°C the internal backup battery will not be charged as a safety precaution due to the dangers associated with charging batteries at extreme temperatures. 
+ Operating: -30ï¿½C to +60ï¿½C 
+Recommended Storage: 10ï¿½C to 30ï¿½C, Humidity 30%. Store in a cool, dry place. 
+LiPo Charger: At <-10ï¿½C and >+45ï¿½C the internal backup battery will not be charged as a safety precaution due to the dangers associated with charging batteries at extreme temperatures. 
  
 Self-Resetting Fuse 
  Built-in self-resetting fuse makes installation simple and safe. 
@@ -192,7 +192,7 @@ Onboard
  
 
 Voltage Monitoring 
- LiPo battery and external voltage readings for ‘Battery Low’ and ‘Power Loss’ alerts. 
+ LiPo battery and external voltage readings for ï¿½Battery Lowï¿½ and ï¿½Power Lossï¿½ alerts. 
  
 Task Management 
  Powerful onboard task management allows you to schedule tasks or run tasks based on sensor thresholds and events, even when out of cellular coverage. 
@@ -200,7 +200,7 @@ Task Management
 
 
  
-Hawk Pro Power Options
+BIMIQ Power Options
 
 
  
@@ -251,7 +251,7 @@ Housing
 IP/IK Rating 
  Ultra-rugged and waterproof IP68 and IK08-rated housing to ensure the device can withstand impact, fine dust, and brief submersion. 
  
-GORE® Vent 
+GOREï¿½ Vent 
  Allows for pressure equalization while protecting against water and dust ingress. 
  
 Installation 
@@ -275,7 +275,7 @@ Housing
 IP/IK Rating 
  Ultra-rugged and waterproof IP68 and IK07-rated housing to ensure the device can withstand impact, fine dust, and brief submersion. 
  
-Optional GORE® Vent 
+Optional GOREï¿½ Vent 
  Allows for pressure equalization while protecting against water and dust ingress. 
  
 Installation 
@@ -324,8 +324,8 @@ Data Security
 Warranty 
  
 
-Manufacturer’s Warranty 
- Two-year manufacturer’s warranty. Exclusions apply. 
+Manufacturerï¿½s Warranty 
+ Two-year manufacturerï¿½s warranty. Exclusions apply. 
  
  
 Certifications 
@@ -346,7 +346,7 @@ Digital Input
 Digital Output 
  1 x Switched Ground (1A current limit) 
  
-I²C SDA/SCL 
+Iï¿½C SDA/SCL 
  Yes 
  
 SDI-12 
@@ -360,7 +360,7 @@ Switched Power Out
 Switched Sensor Power 
  5V or 12V Selectable Power for Sensors 
  
-1-Wire® 
+1-Wireï¿½ 
  Yes 
  
 4-20mA 
@@ -387,7 +387,7 @@ Switched Power Out
 Switched Sensor Power 
  5V or 12V Selectable Power for Sensors 
  
-1-Wire® 
+1-Wireï¿½ 
  Yes 
  
 
@@ -419,7 +419,7 @@ Switched Power Out
 SDI-12 
  Yes 
  
-I²C SDA/SCL 
+Iï¿½C SDA/SCL 
  Yes 
  
 4-20mA 
@@ -467,7 +467,7 @@ Power Out
 Switched Power Out 
  5V or 12V Selectable Power Out for Sensors 
  
-1-Wire® 
+1-Wireï¿½ 
  Yes 
  
 4-20mA 

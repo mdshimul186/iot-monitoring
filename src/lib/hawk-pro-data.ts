@@ -1,4 +1,4 @@
-// Comprehensive Hawk Pro Dashboard Data Structure
+// Comprehensive BIMIQ Dashboard Data Structure
 export interface HawkProData {
     // 1. Executive Overview
     executive: {
@@ -166,6 +166,62 @@ export interface HawkProData {
             lastSeen: string;
         }>;
         regionalSummary: Array<{ region: string; online: number; offline: number }>;
+    };
+
+    // 15. Construction & Building Management
+    construction: {
+        portfolio: {
+            totalBuildings: number;
+            onlineBuildings: number;
+            overallScore: number;
+            criticalIssues: number;
+        };
+        buildings: Array<{
+            id: string;
+            name: string;
+            status: 'operational' | 'warning' | 'critical' | 'offline';
+            occupancy: number;
+            maxOccupancy: number;
+            energyScore: number;
+            securityScore: number;
+            maintenanceScore: number;
+        }>;
+        energyPerformance: {
+            currentUsage: number; // kW
+            peakDemand: number;
+            efficiency: number; // %
+            costToday: number;
+            history: number[];
+            timeLabels: string[];
+        };
+        security: {
+            accessEvents: Array<{ time: string; location: string; type: string; clearance: string }>;
+            breachAttempts: number;
+            camerasOnline: number;
+            camerasTotal: number;
+            lockStatus: Array<{ zone: string; status: 'Locked' | 'Unlocked' | 'Error' }>;
+        };
+        occupancy: {
+            current: number;
+            peak: number;
+            zones: Array<{ name: string; current: number; capacity: number; utilization: number }>;
+            trafficFlow: number[];
+            timeLabels: string[];
+        };
+        maintenance: {
+            overdueItems: Array<{ id: string; item: string; dueDate: string; priority: 'Low' | 'Medium' | 'High' | 'Critical' }>;
+            scheduledToday: Array<{ time: string; item: string; technician: string }>;
+            equipmentHealth: Array<{ equipment: string; status: 'Good' | 'Fair' | 'Poor' | 'Critical'; lastService: string }>;
+            workOrders: { open: number; inProgress: number; completed: number };
+        };
+        atRisk: Array<{
+            id: string;
+            category: 'Energy' | 'Security' | 'Safety' | 'Equipment' | 'Compliance';
+            issue: string;
+            severity: 'Low' | 'Medium' | 'High' | 'Critical';
+            impact: string;
+            dueDate: string;
+        }>;
     };
 }
 
@@ -420,6 +476,100 @@ export function generateHawkProData(): HawkProData {
                 { region: 'South Zone', online: randi(2, 6), offline: randi(0, 1) },
                 { region: 'East Zone', online: randi(4, 9), offline: randi(0, 3) },
             ]
+        },
+
+        construction: {
+            portfolio: {
+                totalBuildings: 12,
+                onlineBuildings: randi(10, 12),
+                overallScore: randi(75, 95),
+                criticalIssues: randi(0, 3)
+            },
+            buildings: Array.from({ length: 12 }).map((_, i) => ({
+                id: `BLD-${1000 + i}`,
+                name: pick(['HQ Tower', 'East Wing', 'West Wing', 'Manufacturing Plant A', 'Warehouse B', 'Office Complex C', 'Research Lab D', 'Data Center E', 'Storage Facility F', 'Admin Building G', 'Maintenance Hub H', 'Parking Structure I'])[i] || `Building ${i + 1}`,
+                status: pick(['operational', 'operational', 'operational', 'warning', 'critical', 'offline'] as const),
+                occupancy: randi(50, 450),
+                maxOccupancy: 500,
+                energyScore: randi(65, 98),
+                securityScore: randi(80, 100),
+                maintenanceScore: randi(70, 95)
+            })),
+            energyPerformance: {
+                currentUsage: rand(850, 1250),
+                peakDemand: rand(1400, 1800),
+                efficiency: randi(78, 94),
+                costToday: rand(2500, 4500),
+                history: generateSeries(1000, 100, 24, 600, 1500),
+                timeLabels
+            },
+            security: {
+                accessEvents: Array.from({ length: 15 }).map(() => ({
+                    time: new Date(Date.now() - randi(1, 480) * 60 * 1000).toLocaleTimeString(),
+                    location: pick(['Main Entrance', 'Loading Dock', 'Parking Garage', 'Executive Floor', 'Server Room', 'Manufacturing Floor']),
+                    type: pick(['Badge Scan', 'PIN Entry', 'Biometric', 'Security Override']),
+                    clearance: pick(['Authorized', 'Authorized', 'Authorized', 'Denied'])
+                })),
+                breachAttempts: randi(0, 3),
+                camerasOnline: randi(142, 150),
+                camerasTotal: 150,
+                lockStatus: [
+                    { zone: 'Main Entrance', status: pick(['Locked', 'Unlocked'] as const) },
+                    { zone: 'Server Room', status: 'Locked' as const },
+                    { zone: 'Executive Wing', status: 'Locked' as const },
+                    { zone: 'Loading Dock', status: pick(['Locked', 'Unlocked'] as const) },
+                    { zone: 'Emergency Exits', status: pick(['Locked', 'Error'] as const) }
+                ]
+            },
+            occupancy: {
+                current: randi(1200, 2800),
+                peak: 3500,
+                zones: [
+                    { name: 'Manufacturing Floor', current: randi(200, 450), capacity: 500, utilization: 0 },
+                    { name: 'Office Block A', current: randi(150, 350), capacity: 400, utilization: 0 },
+                    { name: 'Office Block B', current: randi(100, 280), capacity: 350, utilization: 0 },
+                    { name: 'Executive Wing', current: randi(20, 80), capacity: 100, utilization: 0 },
+                    { name: 'Cafeteria', current: randi(50, 200), capacity: 300, utilization: 0 },
+                    { name: 'Conference Center', current: randi(30, 150), capacity: 250, utilization: 0 }
+                ].map(zone => ({ ...zone, utilization: Math.round((zone.current / zone.capacity) * 100) })),
+                trafficFlow: generateSeries(150, 30, 24, 20, 400),
+                timeLabels
+            },
+            maintenance: {
+                overdueItems: [
+                    { id: 'M001', item: 'HVAC Filter Replacement - Floor 3', dueDate: '2 days ago', priority: 'High' as const },
+                    { id: 'M002', item: 'Fire Suppression System Inspection', dueDate: '5 days ago', priority: 'Critical' as const },
+                    { id: 'M003', item: 'Elevator Safety Check - Tower B', dueDate: '1 day ago', priority: 'High' as const },
+                    { id: 'M004', item: 'Emergency Lighting Test', dueDate: '3 days ago', priority: 'Medium' as const }
+                ].filter(() => Math.random() > 0.3),
+                scheduledToday: [
+                    { time: '09:00 AM', item: 'Roof Inspection', technician: 'John Smith' },
+                    { time: '11:30 AM', item: 'Boiler Maintenance', technician: 'Sarah Lee' },
+                    { time: '02:00 PM', item: 'Security System Upgrade', technician: 'Mike Johnson' },
+                    { time: '04:15 PM', item: 'Parking Gate Repair', technician: 'David Chen' }
+                ],
+                equipmentHealth: [
+                    { equipment: 'Chiller Unit A', status: pick(['Good', 'Fair', 'Poor'] as const), lastService: '15 days ago' },
+                    { equipment: 'Boiler System', status: pick(['Good', 'Fair'] as const), lastService: '8 days ago' },
+                    { equipment: 'Generator Backup', status: 'Good' as const, lastService: '22 days ago' },
+                    { equipment: 'HVAC Zone 1', status: pick(['Good', 'Fair', 'Poor'] as const), lastService: '45 days ago' },
+                    { equipment: 'Fire Pump', status: pick(['Critical', 'Poor'] as const), lastService: '62 days ago' },
+                    { equipment: 'Elevator Bank A', status: 'Good' as const, lastService: '12 days ago' }
+                ],
+                workOrders: {
+                    open: randi(8, 25),
+                    inProgress: randi(5, 15),
+                    completed: randi(45, 120)
+                }
+            },
+            atRisk: [
+                { id: 'R001', category: 'Energy' as const, issue: 'Peak demand approaching grid limit', severity: 'High' as const, impact: 'Potential power outage', dueDate: 'Today' },
+                { id: 'R002', category: 'Safety' as const, issue: 'Fire suppression system overdue for inspection', severity: 'Critical' as const, impact: 'Code violation, insurance risk', dueDate: '5 days overdue' },
+                { id: 'R003', category: 'Equipment' as const, issue: 'Chiller efficiency below 70%', severity: 'Medium' as const, impact: 'Increased energy costs', dueDate: '3 days' },
+                { id: 'R004', category: 'Security' as const, issue: '8 cameras offline in parking area', severity: 'High' as const, impact: 'Blind spots in surveillance', dueDate: 'Today' },
+                { id: 'R005', category: 'Compliance' as const, issue: 'Annual elevator inspection due', severity: 'Medium' as const, impact: 'Regulatory compliance', dueDate: '7 days' },
+                { id: 'R006', category: 'Equipment' as const, issue: 'Fire pump showing critical status', severity: 'Critical' as const, impact: 'Fire safety system failure', dueDate: 'Immediate' }
+            ].filter(() => Math.random() > 0.2)
         }
     };
 }

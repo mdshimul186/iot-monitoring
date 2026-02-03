@@ -192,7 +192,7 @@ export default function Dashboard() {
                     <div className="flex items-center gap-3">
                         <div className="h-10 w-10 rounded-2xl bg-slate-900 text-white grid place-items-center font-bold dark:bg-slate-800">H</div>
                         <div>
-                            <div className="font-semibold leading-tight">Hawk Pro — Sensor Hub Dashboard (Demo)</div>
+                            <div className="font-semibold leading-tight">BIMIQ — Sensor Hub Dashboard (Demo)</div>
                             <div className="text-xs text-slate-500 dark:text-slate-400">LTE-M / NB-IoT • Modular I/O Cards • OTA Config • GPS • Data Logger</div>
                         </div>
                     </div>
@@ -666,7 +666,7 @@ export default function Dashboard() {
 
                 {/* Footer */}
                 <footer className="py-8 text-xs text-slate-500 dark:text-slate-600 border-t pt-6 dark:border-slate-800">
-                    Demo dashboard for Hawk Pro-style sensor hub & data logger workflows • Built with Next.js + Tailwind + Chart.js + Leaflet
+                    Demo dashboard for BIMIQ-style sensor hub & data logger workflows • Built with Next.js + Tailwind + Chart.js + Leaflet
                 </footer>
             </main>
         </div>

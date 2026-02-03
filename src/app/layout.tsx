@@ -15,7 +15,7 @@ const jetBrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Hawk Pro | Next-Gen IoT Monitoring",
+  title: "BIMIQ | Next-Gen IoT Monitoring",
   description: "Enterprise-grade IoT data logging, sensor monitoring, and real-time analytics dashboard.",
 };
 
