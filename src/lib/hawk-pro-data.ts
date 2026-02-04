@@ -254,8 +254,8 @@ function generateSeries(base: number, variance: number, count: number, min?: num
 export function generateHawkProData(): HawkProData {
     const timeLabels = generateTimeLabels(24);
     const batteryLevel = randi(20, 95);
-    const gpsLat = rand(23.70, 23.95);
-    const gpsLng = rand(90.30, 90.52);
+    const gpsLat = 42.5145 + rand(-0.01, 0.01);
+    const gpsLng = -83.0146 + rand(-0.01, 0.01);
 
     return {
         executive: {

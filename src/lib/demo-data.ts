@@ -161,8 +161,8 @@ export function generateDemoData(): DemoData {
     const batteryPct = randi(18, 98);
     const gpsGeofence = pick(["Inside", "Inside", "Inside", "Outside"]);
     const signalDbm = randi(-115, -75);
-    const gpsLat = rand(23.70, 23.95);
-    const gpsLng = rand(90.30, 90.52);
+    const gpsLat = 42.5145 + rand(-0.01, 0.01);
+    const gpsLng = -83.0146 + rand(-0.01, 0.01);
 
     // Alerts logic
     const alerts = [];
